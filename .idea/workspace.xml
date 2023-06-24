@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1af57f36-a37d-4e27-a0d2-7bab7466c688" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/warden/src/components/Pagination/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/warden/src/components/ReportDetails/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/warden/src/components/ReportsList/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="1af57f36-a37d-4e27-a0d2-7bab7466c688" name="Changes" comment="basic setup w/ errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warden/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/warden/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/warden/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/warden/src/main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +40,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "show.migrate.to.gradle.popup": "false",
     "ts.external.directory.path": "/Users/michaelsimmons/Documents/Code/warden/warden/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
@@ -62,11 +54,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1687550940123</updated>
-      <workItem from="1687550941495" duration="2739000" />
+      <workItem from="1687550941495" duration="3398000" />
     </task>
+    <task id="LOCAL-00001" summary="basic setup w/ errors">
+      <created>1687555086063</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1687555086063</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="basic setup w/ errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic setup w/ errors" />
   </component>
 </project>
