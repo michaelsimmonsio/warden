@@ -1,5 +1,5 @@
 export interface Report {
-    id: string;
+    id: number;
     reportedUser: string;
     reporter: string;
     reason: string;

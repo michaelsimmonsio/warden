@@ -1,0 +1,38 @@
+.app {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .report-list {
+    width: 30%;
+    overflow-y: scroll;
+    border-right: 1px solid #ccc;
+    padding: 20px;
+    background-color: #424040;
+  }
+  
+  .report-list div {
+    cursor: pointer;
+    padding: 10px;
+    border-bottom: 1px solid #444444;
+    background-color: rgb(27, 26, 26);
+    color: white;
+  }
+  
+  .report-list div:hover {
+    background-color: #272727;
+  }
+  
+  .report-detail {
+    width: 70%;
+    padding: 20px;
+  }
+  
+  .report-detail h1 {
+    margin-bottom: 20px;
+  }
+  
+  .report-detail p {
+    margin-bottom: 10px;
+  }
+  
