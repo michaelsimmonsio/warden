@@ -15,6 +15,7 @@
     cursor: pointer;
     padding: 10px;
     border-bottom: 1px solid #444444;
+    border-radius: 5px;
     background-color: rgb(27, 26, 26);
     color: white;
   }
@@ -36,3 +37,28 @@
     margin-bottom: 10px;
   }
   
+
+/* Title Styles */
+
+#title {
+    background-color: #233eb2;
+    color: white;
+    font-size: 30px;
+    padding: 5px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+  }
+
+
+  .report-detail {
+    background-color: #1f1f1f;
+    color: white;
+  }
+  .button {
+    border-right: 5px;
+  }
+
+  .mantine-UnstyledButton-root {
+    border-right: 5px;
+  }

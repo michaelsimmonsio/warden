@@ -1,8 +1,11 @@
 export interface Report {
-    id: number;
+    _id: number;
+    uid: string;    
     reportedUser: string;
     reporter: string;
     reason: string;
     context: string;
+    date: string;
+    status: string;
   }
   

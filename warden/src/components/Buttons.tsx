@@ -2,6 +2,12 @@ import { useState } from "react";
 import { useDisclosure } from "@mantine/hooks";
 import { Modal, Button, Group, TextInput, NumberInput } from "@mantine/core";
 
+import { SendNotification } from "./Notification"
+import { sendMessageToSocket } from "../App";
+import "../App.css"
+
+
+
 type Report = {
   id: number;
   username: string;
@@ -23,6 +29,15 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
     const totalSeconds = days * 86400 + hours * 3600 + minutes * 60;
     console.log(`Punishing for ${totalSeconds} seconds`);
     // Handle the punishment here...
+    SendNotification(); // doesn't work yet
+    sendMessageToSocket({
+      action: "newReport",
+      username: report.username,
+      reason: "aa"
+    });
+    
+
+
     close();
   };
 
@@ -51,7 +66,7 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
         </Button>
       </Modal>
 
-      <Button variant="light" color="red" onClick={open}>
+      <Button border-right="5px" variant="light" color="red" onClick={open}>
         Punish User
       </Button>
     </>
@@ -61,7 +76,7 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
 export function RejectButton() {
   return (
     <Button variant="light" color="green">
-      Reject
+      Reject Report
     </Button>
   );
 }

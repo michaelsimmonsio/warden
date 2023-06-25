@@ -27,10 +27,13 @@
     "@tiptap/extension-link": "^2.0.3",
     "@tiptap/react": "^2.0.3",
     "@tiptap/starter-kit": "^2.0.3",
+    "@types/ws": "^8.5.5",
     "dayjs": "^1.11.8",
     "embla-carousel-react": "^8.0.0-rc07",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "socket.io-client": "^4.7.0",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
