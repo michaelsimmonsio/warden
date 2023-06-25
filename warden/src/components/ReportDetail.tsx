@@ -2,7 +2,6 @@ import React from 'react';
 import { Report } from '../types';
 import { RejectButton, PunishmentButton } from './Buttons';
 
-
 interface ReportDetailProps {
   report: Report | null;
 }
