@@ -20,7 +20,7 @@ Warden is a React application that serves as a cutting-edge report queue and con
 
 ## Images
 
-![Main Page](./src/images/wardenmainscreenshot.png) ![Punish Page](./src/images/wardenpunishscreenshot.png)
+![Main Page](./warden/src/images/wardenmainscreenshot.png) ![Punish Page](./warden/src/images/wardenpunishscreenshot.png)
 
 ## Why Use
 
