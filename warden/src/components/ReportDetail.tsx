@@ -87,8 +87,12 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
           reason: report.reason,
           date: ''
         }} />
-        <RejectButton />
-        <DeleteButton report={{
+        <RejectButton report={{
+          id: report._id,
+          username: report.reportedUser,
+          reason: report.reason,
+          date: ''
+        }} />        <DeleteButton report={{
           id: report._id,
           username: report.reportedUser,
           reason: report.reason,

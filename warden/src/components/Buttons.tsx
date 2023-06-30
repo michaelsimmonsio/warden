@@ -23,6 +23,10 @@ type DeleteButtonProps = {
   report: Report;
 };
 
+type RejectButtonProps = {
+  report: Report;
+};
+
 
 export function PunishmentButton({ report }: PunishmentButtonProps) {
   const [opened, { open, close }] = useDisclosure(false);
@@ -78,11 +82,51 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
   );
 }
 
-export function RejectButton() {
+export function RejectButton ({ report }: RejectButtonProps) {
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const handleReject = () => {
+    SendNotification(); // doesn't work yet
+    sendMessageToSocket({
+      action: "rejectReport",
+      id: report.id,
+      username: report.username
+    });
+
+    window.location.reload();
+
+
+
+    close();
+  };
+
   return (
-    <Button variant="light" color="green">
-      Reject Report
-    </Button>
+    <>
+      <Modal opened={opened} onClose={close} title="Reject Report">
+        <TextInput
+          label="Player Username"
+          value={report.username}
+          readOnly
+          my="sm"
+        />
+        <TextInput
+          label="Report ID"
+          value={report.id}
+          readOnly
+          my="sm"
+        />
+        <Button variant="light" color="red" my="sm" onClick={handleReject}>
+          Confirm Rejection
+        </Button>
+        <Button variant="light" color="green" my="sm" onClick={close}>
+          Cancel Rejection
+        </Button>
+      </Modal>
+
+      <Button border-right="5px" variant="light" color="green" onClick={open}>
+        Reject Report
+      </Button>
+    </>
   );
 }
 

@@ -13,7 +13,14 @@ const ReportList: React.FC<ReportListProps> = ({ reports, handleReportClick }) =
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedStatus, setSelectedStatus] = useState<string[]>([]);
 
-  const statusOptions = ['Accepted', 'Rejected', 'Pending', 'Archived', 'TestStatus'];
+
+  const statusOptions = [
+    { value: 'active', label: 'Active'},
+    { value: 'accepted', label: 'Accepted' },
+    { value: 'pending', label: 'Pending' },
+    { value: 'rejected', label: 'Rejected' },
+    { value: 'TestStatus', label: 'testing mode'}
+   ];
 
   const totalPages = Math.ceil(reports.length / itemsPerPage);
 
