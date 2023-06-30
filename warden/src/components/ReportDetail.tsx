@@ -1,11 +1,25 @@
 import React from 'react';
 import { Report } from '../types';
-import { RejectButton, PunishmentButton } from './Buttons';
+import { RejectButton, PunishmentButton, DeleteButton } from './Buttons';
 import "../App.css"
 import { Accordion } from '@mantine/core';
 
 interface ReportDetailProps {
   report: Report | null;
+}
+
+const exampleJson = {
+  1688150234: "message",
+  1688150235: "message",
+  1688150256: "message"
+}
+
+// convert unix to time
+function unixToDate(unix: string): string {
+
+
+  return new Date(parseInt(unix) * 1000).toString();
+
 }
 
 const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
@@ -15,6 +29,14 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
         <div>Select a report to view details</div>
       </div>
     );
+  }
+
+  const renderKeyValueList = () => {
+    return Object.entries(exampleJson).map(([key, value]) => (
+      <li key={key}>
+        <strong>{unixToDate(key)}:</strong> {value}
+      </li>
+    ));
   }
 
   return (
@@ -47,10 +69,15 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
         </div>
       </div>
 
-      <Accordion style={{ marginBottom: '10px', alignItems: 'center' }} defaultValue="customization">
-        <Accordion.Item value="customization">
-          <Accordion.Control>Previous Messages</Accordion.Control>
-          <Accordion.Panel>{report.context}</Accordion.Panel>
+      {/* Accordion panel */}
+      <Accordion style={{ marginBottom: '10px', alignItems: 'center' }}>
+        <Accordion.Item value="jsonPanel">
+          <Accordion.Control>JSON Data</Accordion.Control>
+          <Accordion.Panel>
+            <ul>
+              {renderKeyValueList()}
+            </ul>
+          </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
 
@@ -63,6 +90,12 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
           date: ''
         }} />
         <RejectButton />
+        <DeleteButton report={{
+          id: report._id,
+          username: report.reportedUser,
+          reason: report.reason,
+          date: ''
+        }} />
       </div>
     </div>
   );

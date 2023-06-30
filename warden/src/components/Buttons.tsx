@@ -19,6 +19,11 @@ type PunishmentButtonProps = {
   report: Report;
 };
 
+type DeleteButtonProps = {
+  report: Report;
+};
+
+
 export function PunishmentButton({ report }: PunishmentButtonProps) {
   const [opened, { open, close }] = useDisclosure(false);
   const [hours, setHours] = useState<number>(0);
@@ -78,5 +83,53 @@ export function RejectButton() {
     <Button variant="light" color="green">
       Reject Report
     </Button>
+  );
+}
+
+export function DeleteButton({ report }: DeleteButtonProps) {
+  const [opened, { open, close }] = useDisclosure(false);
+
+  const handleDelete = () => {
+    SendNotification(); // doesn't work yet
+    sendMessageToSocket({
+      action: "deleteReport",
+      id: report.id,
+      username: report.username
+    });
+
+    window.location.reload();
+    
+
+
+    close();
+  };
+
+  return (
+    <>
+      <Modal opened={opened} onClose={close} title="Delete Report">
+        <TextInput
+          label="Player Username"
+          value={report.username}
+          readOnly
+          my="sm"
+        />
+        <TextInput
+          label="Report ID"
+          value={report.id}
+          readOnly
+          my="sm"
+        />
+        <Button variant="light" color="red" my="sm" onClick={handleDelete}>
+          Confirm Deletion
+        </Button>
+        <Button variant="light" color="green" my="sm" onClick={close}>
+          Cancel Deletion
+        </Button>
+      </Modal>
+
+      <Button border-right="5px" variant="light" color="yellow" onClick={open}>
+        Delete Report
+      </Button>
+    </>
   );
 }

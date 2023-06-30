@@ -7,5 +7,6 @@ export interface Report {
     context: string;
     date: string;
     status: string;
+    contextJson: JSON;
   }
   
