@@ -11,15 +11,13 @@ interface ReportDetailProps {
 const exampleJson = {
   1688150234: "message",
   1688150235: "message",
-  1688150256: "message"
+  1688150256: "message",
+
 }
 
 // convert unix to time
 function unixToDate(unix: string): string {
-
-
   return new Date(parseInt(unix) * 1000).toString();
-
 }
 
 const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
