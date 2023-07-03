@@ -9,6 +9,11 @@ import "../App.css"
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword } from 'firebase/auth';
+
+import { auth } from "../App";
+
 
 
 type Report = {
@@ -30,17 +35,70 @@ type RejectButtonProps = {
   report: Report;
 };
 
-// SIGN IN / OUT
-// export function SignInButton({ auth }: { auth: firebase.auth.Auth }) {
-//   const provider = new firebase.auth.GoogleAuthProvider();
-//   auth.signInWithPopup(provider);
+export function SignInButton() {
 
-//   return (
-//     <Button variant="light" color="blue" onClick={() => auth.signInWithPopup(provider)}>
-//       Sign In
-//     </Button>
-//   );
-// }
+  const handleSignin = () => {
+  
+    const provider = new GoogleAuthProvider();
+    try {
+      signInWithPopup(auth, provider);
+    } catch (error) {
+      console.error(error);
+    }
+
+  }
+
+  return (
+    <Button variant="light" color="blue" onClick={handleSignin}>
+      Sign In
+    </Button>
+  );
+}
+
+
+export function DemoSignIn() {
+
+  const handleSignin = () => {
+
+    const signInDemo = async () => {
+      try {
+        const email = "demo@demo.com"
+        const password = "password"
+
+        await signInWithEmailAndPassword(auth, email, password);
+
+      } catch(error) {
+        console.error("Error signing in with demo account " + error);
+      }
+    }
+
+    signInDemo();
+
+
+
+  }
+
+  return (
+    <Button variant="light" color="green" onClick={handleSignin}>
+      Sign In (Demo Account)
+    </Button>
+  );
+}
+
+
+export function SignOutButton() {
+
+  const handleSignout = () => {
+    auth.signOut();
+  }
+
+  return (
+    <Button variant="light" color="red" onClick={handleSignout}>
+      Sign Out
+    </Button>
+  );
+}
+
 
 
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Report } from '../types';
 import { Pagination, Input, MultiSelect } from '@mantine/core';
+import { SignOutButton } from './Buttons';
 
 interface ReportListProps {
   reports: Report[];
@@ -82,7 +83,13 @@ const ReportList: React.FC<ReportListProps> = ({ reports, handleReportClick }) =
           searchable
         />
       </div>
+      <SignOutButton />
+
+
+
     </div>
+    
+
   );
 };
 

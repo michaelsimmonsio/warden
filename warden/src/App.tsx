@@ -4,6 +4,7 @@ import ReportDetail from './components/ReportDetail';
 import { Report } from './types';
 import './App.css';
 import { MantineProvider } from '@mantine/core';
+import 'firebase/auth';
 
 import io from 'socket.io-client';
 
@@ -13,9 +14,8 @@ const socket = io('http://localhost:8000');
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getAnalytics } from "firebase/analytics";
-import { SignInButton } from './components/Buttons';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { DemoSignIn, SignInButton } from './components/Buttons';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,13 +31,14 @@ const firebaseConfig = {
   measurementId: "G-7PG3TVV9VM"
 };
 
+
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(firebaseApp); // Breaks the app lol
 
 // FIREBASE LOGIN LOGIC
 
-const auth = getAuth(firebaseApp);
+export const auth = getAuth(firebaseApp);
 
 const App: React.FC = () => {
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
@@ -67,24 +68,28 @@ const App: React.FC = () => {
     }
   };
 
-  // if (!user) {
-  //   return(
-  //     <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+  if (!user) {
+    return(
+      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
 
-  //     <div className='app'>
-  //       <div className="login">
-  //         <h1 className="login-feature">Warden</h1>
-  //         <h2 className='login-feature'>Login</h2>
+      <div className='app'>
+        <div className="login">
+          <h1 className="login-feature">Warden</h1>
 
-  //         <SignInButton auth={auth} />
+          <div className="login-feature">
+            <SignInButton />
+          </div>
+          <div className='login-feature'>
+            <DemoSignIn />
+            </div>
 
-  //       </div>
-  //       </div>
+        </div>
+        </div>
 
-  //       </MantineProvider>
+        </MantineProvider>
 
-  //   );
-  // }
+    );
+  }
 
 
   return (
@@ -101,4 +106,7 @@ export default App;
 
 export const sendMessageToSocket = (message: any) => {
   socket.emit('message', message);
+
+  
 };
+

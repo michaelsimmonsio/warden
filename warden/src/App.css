@@ -33,6 +33,7 @@
 
   .login-feature {
     text-align: center;
+    padding-top: 10px;
   }
 
   
@@ -47,6 +48,11 @@
   
   .report-list div:hover {
     background-color: #272727;
+  }
+
+  .report-list span:hover {
+    /* fix later */
+
   }
   
   .report-detail {
