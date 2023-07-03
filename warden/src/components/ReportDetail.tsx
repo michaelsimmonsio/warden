@@ -1,6 +1,6 @@
 import React from 'react';
 import { Report } from '../types';
-import { RejectButton, PunishmentButton, DeleteButton } from './Buttons';
+import { RejectButton, PunishmentButton, DeleteButton, TestNotification } from './Buttons';
 import "../App.css"
 import { Accordion } from '@mantine/core';
 
@@ -70,7 +70,7 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
       {/* Accordion panel */}
       <Accordion style={{ marginBottom: '10px', alignItems: 'center' }}>
         <Accordion.Item value="jsonPanel">
-          <Accordion.Control>JSON Data</Accordion.Control>
+          <Accordion.Control>Previous Messages</Accordion.Control>
           <Accordion.Panel>
             <ul>
               {renderKeyValueList()}
@@ -98,6 +98,8 @@ const ReportDetail: React.FC<ReportDetailProps> = ({ report }) => {
           reason: report.reason,
           date: ''
         }} />
+
+        <TestNotification />
       </div>
     </div>
   );

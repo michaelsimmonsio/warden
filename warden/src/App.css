@@ -9,9 +9,34 @@
     /* border-right: 1px solid #ccc; */
     padding: 20px;
     background-color: #424040;
+    
   }
+
+  .report-list-features {
+    background-color: rgb(27, 26, 26);
+    color: (27, 26, 26);
+
+  }
+
   
-  .report-list div {
+  .login {
+    width: 800px;
+    height: 400px;
+    border-radius: 15px;
+    background-color: rgb(50, 50, 50);
+    position: absolute;
+    top: 50%;
+    align-items: center;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .login-feature {
+    text-align: center;
+  }
+
+  
+  .report-list-item {
     cursor: pointer;
     padding: 10px;
     border-bottom: 1px solid #444444;

@@ -6,6 +6,9 @@ import { SendNotification } from "./Notification"
 import { sendMessageToSocket } from "../App";
 import "../App.css"
 
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
 
 
 type Report = {
@@ -26,6 +29,19 @@ type DeleteButtonProps = {
 type RejectButtonProps = {
   report: Report;
 };
+
+// SIGN IN / OUT
+// export function SignInButton({ auth }: { auth: firebase.auth.Auth }) {
+//   const provider = new firebase.auth.GoogleAuthProvider();
+//   auth.signInWithPopup(provider);
+
+//   return (
+//     <Button variant="light" color="blue" onClick={() => auth.signInWithPopup(provider)}>
+//       Sign In
+//     </Button>
+//   );
+// }
+
 
 
 export function PunishmentButton({ report }: PunishmentButtonProps) {
@@ -50,9 +66,22 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
     close();
   };
 
+function handlePlatform(platform: String) { 
+    if (platform == "addlater") { }
+    if (report.reason === "TestReason") {
+      return(
+        <div>
+          <p>TestReason</p>
+        </div>
+      )
+    }
+
+ };
+
   return (
     <>
       <Modal opened={opened} onClose={close} title="Punish User">
+        
         <TextInput
           label="Player Username"
           value={report.username}
@@ -65,6 +94,8 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
           placeholder="Verbal Harassment"
           my="sm"
         />
+
+        {handlePlatform(report.reason)}
         <Group grow>
           <NumberInput label="Days" value={days} onChange={(value: number | "") => setDays(value as number)} min={0} />
           <NumberInput label="Hours" value={hours} onChange={(value: number | "") => setHours(value as number)} min={0} max={24} />
@@ -115,7 +146,7 @@ export function RejectButton ({ report }: RejectButtonProps) {
           readOnly
           my="sm"
         />
-        <Button variant="light" color="red" my="sm" onClick={handleReject}>
+        <Button style={{ marginRight: '8px' }} variant="light" color="red" my="sm" onClick={handleReject}>
           Confirm Rejection
         </Button>
         <Button variant="light" color="green" my="sm" onClick={close}>
@@ -163,7 +194,7 @@ export function DeleteButton({ report }: DeleteButtonProps) {
           readOnly
           my="sm"
         />
-        <Button variant="light" color="red" my="sm" onClick={handleDelete}>
+        <Button variant="light" style={{ marginRight: '8px' }} color="red" my="sm" onClick={handleDelete}>
           Confirm Deletion
         </Button>
         <Button variant="light" color="green" my="sm" onClick={close}>
@@ -176,4 +207,12 @@ export function DeleteButton({ report }: DeleteButtonProps) {
       </Button>
     </>
   );
+}
+
+export function TestNotification() {
+
+  return (
+    <Button variant="light" color="blue" onClick={SendNotification}>Test Notifications</Button>
+  );
+
 }

@@ -29,8 +29,8 @@ const ReportList: React.FC<ReportListProps> = ({ reports, handleReportClick }) =
 
   const filteredReports = reports.filter(
     (report) =>
-    // works fine, will fix error later
-      (report._id.includes(searchTerm) || report.reportedUser.includes(searchTerm)) &&
+      // @ts-ignore (.includes doesn't work w/ numbers, but search term will never be a number anyways)
+      (report._id.includes(searchTerm.toString()) || report.reportedUser.includes(searchTerm)) &&
       (selectedStatus.length === 0 || selectedStatus.includes(report.status))
   );
 
@@ -53,23 +53,24 @@ const ReportList: React.FC<ReportListProps> = ({ reports, handleReportClick }) =
   return (
     <div className="report-list">
       <div id="title">
-        <p id="titlep">Warden Reports {filteredReports.length}</p>
+        <p id="titlep">Warden | {filteredReports.length} Filtered Reports</p>
+      </div>
+
+      <div className="report-list-features" style={{ marginTop: '0px' }}>
+        <Input
+          value={searchTerm}
+          onChange={handleSearchChange}
+          placeholder="Search by ID or Username"
+        />
       </div>
       {currentReports.map((report, index) => (
-        <div key={index} onClick={() => handleReportClick(report)}>
+        <div className="report-list-item" key={index} onClick={() => handleReportClick(report)}>
           {report._id} - {report.reportedUser}
         </div>
       ))}
 
-      <Pagination total={totalPages} value={currentPage} onChange={handlePageChange} />
+      <Pagination  className="report-list-features" total={totalPages} value={currentPage} onChange={handlePageChange} />
 
-      <div style={{ marginTop: '0px' }}>
-        <Input
-          value={searchTerm}
-          onChange={handleSearchChange}
-          placeholder="Search by ID or User"
-        />
-      </div>
 
       <div style={{ marginTop: '0px' }}>
         <MultiSelect

@@ -9,13 +9,48 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:8000');
 
+// START FIREBASE
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAnalytics } from "firebase/analytics";
+import { SignInButton } from './components/Buttons';
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCdXbTUstwnkcQJ7EJGbFztZI9sK1vmVbg",
+  authDomain: "warden-83967.firebaseapp.com",
+  projectId: "warden-83967",
+  storageBucket: "warden-83967.appspot.com",
+  messagingSenderId: "756735335367",
+  appId: "1:756735335367:web:c9aa066e959223a36d57e2",
+  measurementId: "G-7PG3TVV9VM"
+};
+
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+// const analytics = getAnalytics(firebaseApp); // Breaks the app lol
+
+// FIREBASE LOGIN LOGIC
+
+const auth = getAuth(firebaseApp);
+
 const App: React.FC = () => {
   const [selectedReport, setSelectedReport] = useState<Report | null>(null);
   const [reports, setReports] = useState<Report[]>([]);
+  const [user, setUser] = useState<any>(null); // Track the user state
 
   useEffect(() => {
     fetchReports();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
     return () => {
+      unsubscribe(); // Unsubscribe from the auth state listener
       socket.disconnect();
     };
   }, []);
@@ -31,7 +66,26 @@ const App: React.FC = () => {
       console.error(error);
     }
   };
-  
+
+  // if (!user) {
+  //   return(
+  //     <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+
+  //     <div className='app'>
+  //       <div className="login">
+  //         <h1 className="login-feature">Warden</h1>
+  //         <h2 className='login-feature'>Login</h2>
+
+  //         <SignInButton auth={auth} />
+
+  //       </div>
+  //       </div>
+
+  //       </MantineProvider>
+
+  //   );
+  // }
+
 
   return (
     <div className="app">
