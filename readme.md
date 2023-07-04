@@ -2,7 +2,7 @@
 
 Warden is a React application that serves as a cutting-edge report queue and content moderation system, designed to be extended upon for any use case.
 
-## [Live Demo](https://google.com/)
+## [Live Demo](https://michaelsimmonsio.github.io/warden-page/)
 Some features, such as deleting reports, are disabled in the demo.
 
 ## Features
