@@ -5,6 +5,7 @@ import { Report } from './types';
 import './App.css';
 import { MantineProvider } from '@mantine/core';
 import 'firebase/auth';
+import { Notifications } from '@mantine/notifications';
 
 import io from 'socket.io-client';
 
@@ -14,8 +15,8 @@ const socket = io('http://localhost:8000');
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { DemoSignIn, SignInButton } from './components/Buttons';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { DemoSignIn, GithubButton, SignInButton } from './components/Buttons';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -74,7 +75,10 @@ const App: React.FC = () => {
 
       <div className='app'>
         <div className="login">
-          <h1 className="login-feature">Warden</h1>
+          <h1 className="login-title">Warden</h1>
+          <div className="login-feature">
+            <GithubButton  />
+          </div>
 
           <div className="login-feature">
             <SignInButton />
@@ -82,6 +86,7 @@ const App: React.FC = () => {
           <div className='login-feature'>
             <DemoSignIn />
             </div>
+
 
         </div>
         </div>
@@ -95,6 +100,7 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+        <Notifications position='top-right'/> 
         <ReportList reports={reports} handleReportClick={setSelectedReport} />
         <ReportDetail report={selectedReport} />
       </MantineProvider>

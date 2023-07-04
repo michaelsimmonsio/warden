@@ -2,25 +2,37 @@
 
 Warden is a React application that serves as a cutting-edge report queue and content moderation system, designed to be extended upon for any use case.
 
+## [Live Demo](https://google.com/)
+Some features, such as deleting reports, are disabled in the demo.
+
 ## Features
 
 - Utilizes a Express Node.js API to seamlessly retrieve a comprehensive list of reports from a MongoDB database, ensuring efficient data management and retrieval.
 
 - Uses Socket.io, a powerful websockets library, to establish real-time communication with the backend Node.js server. This opens up endless possibilities for extending Warden's functionality, such as integrating with other applications like Discord bots for user punishment or report creation.
 
-- Offers an intuitive and user-friendly web interface that displays the list of reports, allowing users to effortlessly navigate through different reports and access their detailed information.
+- Authentication system that uses Firebase authentication to ensure that only authorized users can access the report queue. This can be easily expanded upon to include more features, such as user roles and permissions.
 
-- Introduces a versatile "Punish" modal that enables users to issue punishments with custom timeframes. All durations are automatically converted to seconds, simplifying the process for users.
+- Uses Pagination to display reports in a clean and organized manner, allowing users to easily navigate through a virtually unlimited report queue.
 
-- The Punish modal has an example function written that communicates with the backend server's websocket and executes a function from the backend server. This can easily be expanded on to use this app for many use cases.
+- Introduces a versatile modal system that enables users to issue punishments with custom timeframes. All durations are automatically converted to seconds, simplifying the process for users. The Punish modal has an example function written that communicates with the backend server's websocket and executes a function from the backend server. This can easily be expanded on to use this app for many use cases.
 
 - The Node.js backend, which serves as the foundation for Warden's functionality, demonstrates a set of basic functions that highlight its extensibility and potential for customization.
+
+- Search and Filter functionality that allows users to search for reports by username, report ID, or report reason. This can be easily expanded upon to include more search parameters. Users can filter by report status, allowing them to easily find reports that have not been reviewed or have been resolved.
+
+- Notification system that displays a notification when a user issues a punishment. This can be easily expanded upon to include more notifications, such as when a user resolves a report.
+
+- Uses Mantine, a UI framework, to create a clean and modern user interface.
 
 - Uses Vite to make development easier.
 
 ## Images
 
 ![Main Page](warden/images/wardenmainscreenshot.png) ![Punish Page](warden/images/wardenpunishscreenshot.png)
+![Reject Page](warden/images/wardenrejectreportscreenshot.png)
+![Settings Page](warden/images/wardensettingsscreenshot.png)
+![Login Page](warden/images/wardenloginpagescreenshot.png)
 
 ## Why Use
 

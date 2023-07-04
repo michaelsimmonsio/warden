@@ -3,6 +3,8 @@ import { Report } from '../types';
 import { Pagination, Input, MultiSelect } from '@mantine/core';
 import { SignOutButton } from './Buttons';
 
+
+
 interface ReportListProps {
   reports: Report[];
   handleReportClick: (report: Report) => void;
@@ -54,7 +56,7 @@ const ReportList: React.FC<ReportListProps> = ({ reports, handleReportClick }) =
   return (
     <div className="report-list">
       <div id="title">
-        <p id="titlep">Warden | {filteredReports.length} Filtered Reports</p>
+        <p id="titlep">Warden | Demo </p>
       </div>
 
       <div className="report-list-features" style={{ marginTop: '0px' }}>

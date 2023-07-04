@@ -29,13 +29,27 @@
     align-items: center;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #233eb2;
   }
 
   .login-feature {
     text-align: center;
-    padding-top: 10px;
+    padding-top: 0px;
+    font-size: 30px;
   }
 
+  .login-title {
+    text-align: center;
+    padding-top: 0px;
+    font-size: 60px;
+    color: white;
+  }
+
+  #title h1 {
+    text-align: center;
+    padding-top: 10px;
+    font-size: 50px;
+  }
   
   .report-list-item {
     cursor: pointer;
@@ -46,13 +60,15 @@
     color: white;
   }
   
-  .report-list div:hover {
+  .report-list-item:hover {
     background-color: #272727;
   }
 
-  .report-list span:hover {
-    /* fix later */
-
+  .center {
+    display: block;;
+    margin-right: auto;
+    width: 50%;
+    align-items: center;
   }
   
   .report-detail {
@@ -67,7 +83,8 @@
   .report-detail p {
     margin-bottom: 10px;
   }
-  
+
+
 
 /* Title Styles */
 

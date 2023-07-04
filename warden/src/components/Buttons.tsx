@@ -6,14 +6,18 @@ import { SendNotification } from "./Notification"
 import { sendMessageToSocket } from "../App";
 import "../App.css"
 
-import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut, signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
 
 import { auth } from "../App";
 
+import { notifications } from '@mantine/notifications';
+
+
+// Icons
+
+import { Settings, BrandGithub } from "tabler-icons-react"
 
 
 type Report = {
@@ -49,8 +53,8 @@ export function SignInButton() {
   }
 
   return (
-    <Button variant="light" color="blue" onClick={handleSignin}>
-      Sign In
+    <Button variant="light" color="green" onClick={handleSignin}>
+      Sign In (Google)
     </Button>
   );
 }
@@ -79,23 +83,55 @@ export function DemoSignIn() {
   }
 
   return (
-    <Button variant="light" color="green" onClick={handleSignin}>
+    <Button variant="light" color="pink" onClick={handleSignin}>
       Sign In (Demo Account)
     </Button>
   );
 }
 
+export function GithubButton() {
+
+  const handleSignin = () => {
+
+    //opens github link
+    window.open("https://www.github.com/michaelsimmonsio/warden", "_blank");
+
+  }
+
+  return (
+    <Button variant="light" color="gray" onClick={handleSignin}>
+      <BrandGithub />Github
+    </Button>
+  );
+}
+
+
+
 
 export function SignOutButton() {
+  const [opened, { open, close }] = useDisclosure(false);
+
 
   const handleSignout = () => {
     auth.signOut();
   }
 
   return (
-    <Button variant="light" color="red" onClick={handleSignout}>
-      Sign Out
-    </Button>
+    <>
+      <Modal opened={opened} onClose={close} title="Settings">
+        <Button style={{ marginRight: '8px' }} variant="light" color="red" my="sm" onClick={handleSignout}>
+          Sign Out
+        </Button>
+        <Button variant="light" color="yellow" my="sm" onClick={close}>
+          Manually Add Report
+        </Button>
+        <TestNotification />
+      </Modal>
+
+      <Button fullWidth variant="light" color="blue" onClick={open}>
+        <Settings size={30} /> Settings
+      </Button>
+    </>
   );
 }
 
@@ -110,9 +146,9 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
 
   const handlePunish = () => {
     const totalSeconds = days * 86400 + hours * 3600 + minutes * 60;
-    console.log(`Punishing for ${totalSeconds} seconds`);
-    // Handle the punishment here...
-    SendNotification(); // doesn't work yet
+    notifications.show({ title: 'User Punished', message: report.username + ' has been punished for ' + totalSeconds + ' seconds.' })
+
+    // Websocket 
     sendMessageToSocket({
       action: "newReport",
       username: report.username,
@@ -124,17 +160,6 @@ export function PunishmentButton({ report }: PunishmentButtonProps) {
     close();
   };
 
-function handlePlatform(platform: String) { 
-    if (platform == "addlater") { }
-    if (report.reason === "TestReason") {
-      return(
-        <div>
-          <p>TestReason</p>
-        </div>
-      )
-    }
-
- };
 
   return (
     <>
@@ -153,7 +178,6 @@ function handlePlatform(platform: String) {
           my="sm"
         />
 
-        {handlePlatform(report.reason)}
         <Group grow>
           <NumberInput label="Days" value={days} onChange={(value: number | "") => setDays(value as number)} min={0} />
           <NumberInput label="Hours" value={hours} onChange={(value: number | "") => setHours(value as number)} min={0} max={24} />
@@ -175,14 +199,16 @@ export function RejectButton ({ report }: RejectButtonProps) {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleReject = () => {
-    SendNotification(); // doesn't work yet
-    sendMessageToSocket({
-      action: "rejectReport",
-      id: report.id,
-      username: report.username
-    });
+    notifications.show({ title: 'Report Rejected', message: 'Report #' + report.id + ' has been marked as rejected.' })
 
-    window.location.reload();
+    // Websocket (disabled for demo)
+
+    // sendMessageToSocket({
+    //   action: "rejectReport",
+    //   id: report.id,
+    //   username: report.username
+    // });
+
 
 
 
@@ -223,14 +249,19 @@ export function DeleteButton({ report }: DeleteButtonProps) {
   const [opened, { open, close }] = useDisclosure(false);
 
   const handleDelete = () => {
-    SendNotification(); // doesn't work yet
-    sendMessageToSocket({
-      action: "deleteReport",
-      id: report.id,
-      username: report.username
-    });
+    notifications.show({ title: 'Report Deleted', message: 'Report #' + report.id + ' would have been deleted if this was not a demo.' })
 
-    window.location.reload();
+
+
+    // Websocket (disabled for demo)
+
+    // sendMessageToSocket({
+    //   action: "deleteReport",
+    //   id: report.id,
+    //   username: report.username
+    // });
+
+    // window.location.reload();
     
 
 
@@ -268,6 +299,8 @@ export function DeleteButton({ report }: DeleteButtonProps) {
 }
 
 export function TestNotification() {
+
+  
 
   return (
     <Button variant="light" color="blue" onClick={SendNotification}>Test Notifications</Button>
