@@ -40,13 +40,16 @@ This is a barebones project that can be extended on to use for content moderatio
 
 ## Backend Repository
 
-To explore the Node.js backend repository that underpins Warden's functionality and serves as a starting point for customization and expansion, please visit [this link](https://github.com/add/backend/link/later).
+To explore the Node.js backend repository that underpins Warden's functionality and serves as a starting point for customization and expansion, please visit [this link](https://github.com/michaelsimmonsio/warden-backend).
 
 ## Skills
 This is a personal project that helped me learn the following skills:
 - React Development / front-end development
-- Express Node.JS API 
+- User authentication with Firebase
+- Express Node.JS API
 - Socket.io / Web Sockets
+- Pagination
+- Search & Filter Tools
 - MongoDB
 - Cross-Origin Resource Sharing (CORS)
 - UI Frameworks (Mantine)
