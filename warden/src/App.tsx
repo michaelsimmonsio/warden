@@ -80,9 +80,9 @@ const App: React.FC = () => {
             <GithubButton  />
           </div>
 
-          <div className="login-feature">
+          {/* <div className="login-feature">
             <SignInButton />
-          </div>
+          </div> */}
           <div className='login-feature'>
             <DemoSignIn />
             </div>

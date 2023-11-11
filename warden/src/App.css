@@ -20,8 +20,8 @@
 
   
   .login {
-    width: 800px;
-    height: 400px;
+    width: 600px;
+    height: 300px;
     border-radius: 15px;
     background-color: rgb(50, 50, 50);
     position: absolute;
@@ -29,7 +29,12 @@
     align-items: center;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #233eb2;
+    /* background-color: #233eb2; */
+    background-image: linear-gradient(to bottom right, rgba(107, 193, 255), #233eb2);
+
+    /* add gradient background color
+    */ 
+
   }
 
   .login-feature {

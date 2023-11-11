@@ -17,7 +17,7 @@ import { notifications } from '@mantine/notifications';
 
 // Icons
 
-import { Settings, BrandGithub } from "tabler-icons-react"
+import { Settings, BrandGithub, Key } from "tabler-icons-react"
 
 
 type Report = {
@@ -83,8 +83,8 @@ export function DemoSignIn() {
   }
 
   return (
-    <Button variant="light" color="pink" onClick={handleSignin}>
-      Sign In (Demo Account)
+    <Button variant="light" color="gray" onClick={handleSignin}>
+      <span style={{ marginRight: "5px" }}><Key /></span>Sign In (Demo Account)
     </Button>
   );
 }
@@ -100,7 +100,7 @@ export function GithubButton() {
 
   return (
     <Button variant="light" color="gray" onClick={handleSignin}>
-      <BrandGithub />Github
+      <span style={{ marginRight: "5px" }}><BrandGithub /></span>Github
     </Button>
   );
 }
